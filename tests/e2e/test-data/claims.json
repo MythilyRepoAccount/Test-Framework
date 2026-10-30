@@ -1,0 +1,15 @@
+{
+  "validClaim": {
+    "incidentDate": "2025-03-14",
+    "incidentLocation": "123 Demo Street, Chennai",
+    "claimAmount": "1250.50",
+    "descriptionPrefix": "Playwright automated claim - rear bumper damaged in car park",
+    "expected": {
+      "reviewDate": "March 14, 2025",
+      "listDate": "Mar 14, 2025",
+      "amount": "$1,250.50",
+      "status": "Submitted",
+      "apiStatus": "SUBMITTED"
+    }
+  }
+}

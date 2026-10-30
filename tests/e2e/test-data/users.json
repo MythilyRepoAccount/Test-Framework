@@ -1,0 +1,5 @@
+{
+  "admin": { "email": "admin@demo.com", "password": "Admin123!" },
+  "claimant": { "email": "claimant@demo.com", "password": "Claimant123!" },
+  "invalid": { "email": "invalid-user@demo.com", "password": "WrongPassword123!" }
+}

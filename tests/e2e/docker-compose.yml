@@ -1,0 +1,28 @@
+# Runs the Playwright E2E suite in a container against the app stack.
+#
+# Prerequisite: the app stack is already running (see tech-assess-qa/demo-app/README.md).
+#
+# Usage (from tests/e2e):
+#   docker compose run --rm e2e-tests                          # full suite
+#   docker compose run --rm e2e-tests npm run test:smoke       # one tag
+#   podman compose run --rm e2e-tests                          # Podman
+#
+# Reports are written back to ./playwright-report and ./test-results on the host.
+
+services:
+  e2e-tests:
+    build: .
+    image: claims-e2e-tests:latest
+    # Host networking is required, not a shortcut: the UI's browser code calls the BFF at
+    # http://localhost:8090 (NEXT_PUBLIC_BFF_URL is baked into the UI), the BFF only allows
+    # WebSocket origin http://localhost:3001, and auth cookies are SameSite=Strict on localhost.
+    # On a compose network (http://demo-ui:3001) login and claim API calls would fail.
+    network_mode: host
+    environment:
+      BASE_URL: http://localhost:3001
+      BFF_URL: http://localhost:8090
+    # Chromium needs more shared memory than the container default of 64MB.
+    shm_size: 1gb
+    volumes:
+      - ./playwright-report:/e2e/playwright-report
+      - ./test-results:/e2e/test-results

@@ -1,0 +1,22 @@
+{
+  "name": "claims-e2e-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright E2E tests for the claims demo app: login, claim creation and verification",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:sanity": "playwright test --grep @sanity",
+    "test:regression": "playwright test --grep @regression",
+    "test:login": "playwright test --grep @login",
+    "test:claims": "playwright test specs/claims.spec.ts",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2",
+    "@types/node": "^20",
+    "typescript": "5.9.3"
+  }
+}
